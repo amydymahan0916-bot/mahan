@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هویت دیجیتال ماهان</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui;
+}
+
+/* بک‌گراند ماتریکس */
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:white;
+    background:black;
+}
+
+/* canvas ماتریکس */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-2;
+}
+
+/* لایه نور نئونی */
+.glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:linear-gradient(45deg,#00ffcc,#0072ff);
+    filter:blur(150px);
+    opacity:0.12;
+    top:-150px;
+    right:-150px;
+    z-index:-1;
+}
+
+/* کانتینر */
+.wrap{
+    max-width:420px;
+    margin:auto;
+    padding:25px;
+}
+
+/* هدر */
+.hero{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(0,255,200,0.05);
+    backdrop-filter: blur(10px);
+    border:1px solid rgba(0,255,200,0.15);
+}
+
+/* عکس */
+.avatar{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    border:2px solid #00ffcc;
+    box-shadow:0 0 15px #00ffcc;
+    object-fit:cover;
+}
+
+/* اسم */
+.name{
+    font-size:18px;
+    font-weight:800;
+}
+
+.status{
+    font-size:12px;
+    color:#00ffcc;
+}
+
+/* کارت‌ها */
+.grid{
+    margin-top:18px;
+    display:grid;
+    gap:12px;
+}
+
+.card{
+    padding:14px;
+    border-radius:14px;
+    background:rgba(0,255,200,0.04);
+    border:1px solid rgba(0,255,200,0.12);
+    transition:0.3s;
+    backdrop-filter: blur(8px);
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    border-color:#00ffcc;
+    box-shadow:0 0 15px rgba(0,255,200,0.2);
+}
+
+/* دکمه‌ها */
+.buttons{
+    margin-top:18px;
+    display:grid;
+    gap:10px;
+}
+
+.btn{
+    padding:12px;
+    border-radius:14px;
+    text-decoration:none;
+    text-align:center;
+    font-weight:700;
+    color:black;
+    background:linear-gradient(45deg,#00ffcc,#0072ff);
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 20px rgba(0,255,200,0.4);
+}
+
+/* footer */
+.footer{
+    margin-top:20px;
+    font-size:10px;
+    color:#666;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow"></div>
+<canvas id="matrix"></canvas>
+
+<div class="wrap">
+
+    <!-- هدر -->
+    <div class="hero">
+        <img class="avatar" src="profile.jpg">
+
+        <div>
+            <div class="name">ماهان امیدی</div>
+            <div class="status">● اتصال به شبکه فعال</div>
+        </div>
+    </div>
+
+    <!-- اطلاعات -->
+    <div class="grid">
+
+        <div class="card">💻 برنامه‌نویس وب و موبایل</div>
+        <div class="card">🔐 امنیت و هک اخلاقی</div>
+        <div class="card">🚀 توسعه سیستم‌های دیجیتال</div>
+        <div class="card">📍 وضعیت: آنلاین</div>
+
+        <div class="card">📱 شماره: 09379405557</div>
+        <div class="card">📢 کانال روبیکا: MahanOmidi26</div>
+        <div class="card">👤 آی‌دی روبیکا: Omidi__xx</div>
+
+    </div>
+
+    <!-- دکمه‌ها -->
+    <div class="buttons">
+
+        <a class="btn" href="https://rubika.ir/MahanOmidi26">ورود به کانال</a>
+        <a class="btn" href="tel:09379405557">تماس مستقیم</a>
+
+    </div>
+
+    <div class="footer">
+        SYSTEM ONLINE • DIGITAL ID ACTIVE
+    </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letters = "01MAHANOMIDIHACKERDEV010101";
+letters = letters.split("");
+
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for(let x=0;x<columns;x++) drops[x]=1;
+
+function draw(){
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ffcc";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        let text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+            drops[i]=0;
+        }
+        drops[i]++;
+    }
+}
+
+setInterval(draw,33);
+</script>
+
+</body>
+</html>
