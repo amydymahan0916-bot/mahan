@@ -3,200 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ماهان هک|Mahan Hack</title>
+<title>MAHAN Hack|ماهان هک</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:tahoma, sans-serif;
+font-family:tahoma;
 }
 
 body{
-background:#050505;
-color:white;
-min-height:100vh;
+height:100vh;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#05060a;
+color:#fff;
+position:relative;
 }
 
-body:before{
+/* glowing background */
+body::before{
 content:"";
-position:fixed;
-inset:0;
-background:
-linear-gradient(#00ff9910 1px,transparent 1px),
-linear-gradient(90deg,#00ff9910 1px,transparent 1px);
-background-size:40px 40px;
-pointer-events:none;
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#00e5ff55,#00ff9955,transparent 70%);
+filter:blur(80px);
+animation:move 6s infinite alternate;
 }
 
-.container{
-width:90%;
-max-width:900px;
-margin:auto;
+@keyframes move{
+from{transform:translate(-150px,-100px);}
+to{transform:translate(150px,100px);}
 }
 
 .card{
-margin-top:60px;
-background:#0b0b0bcc;
-border:1px solid #00ff99;
+width:92%;
+max-width:420px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,255,200,0.2);
+backdrop-filter:blur(20px);
 border-radius:25px;
-padding:35px;
+padding:25px;
 text-align:center;
-box-shadow:0 0 30px #00ff9930;
+box-shadow:0 0 40px rgba(0,255,200,0.15);
 }
 
-img{
-width:150px;
-height:150px;
+.profile{
+width:110px;
+height:110px;
 border-radius:50%;
-border:3px solid #00ff99;
+border:2px solid #00ffd5;
 object-fit:cover;
+box-shadow:0 0 20px #00ffd5;
 }
 
 h1{
-margin:20px 0;
-color:#00ff99;
-font-size:35px;
+font-size:22px;
+margin-top:10px;
+color:#00ffd5;
+}
+
+.role{
+font-size:13px;
+color:#aaa;
+margin-top:5px;
 }
 
 .typing{
-color:#aaa;
-font-size:18px;
+margin-top:12px;
+font-size:13px;
+color:#00e5ff;
+min-height:18px;
 }
 
-.section{
-margin-top:35px;
+.btns{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin-top:20px;
 }
 
-h2{
-color:#00ff99;
-margin-bottom:15px;
-}
-
-.skills{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-}
-
-.skill{
-background:#111;
-border:1px solid #00ff9950;
-padding:20px;
-border-radius:15px;
-transition:.3s;
-}
-
-.skill:hover{
-transform:translateY(-5px);
-box-shadow:0 0 20px #00ff99;
-}
-
-.btn{
-display:inline-block;
-margin-top:25px;
-padding:12px 35px;
-background:#00ff99;
-color:#000;
-border-radius:30px;
+a{
 text-decoration:none;
-font-weight:bold;
+padding:12px;
+border-radius:12px;
+background:rgba(0,255,200,0.08);
+border:1px solid rgba(0,255,200,0.25);
+color:#00ffd5;
+font-size:14px;
+transition:0.3s;
 }
 
-footer{
-margin:30px;
-text-align:center;
+a:hover{
+background:#00ffd5;
+color:#000;
+box-shadow:0 0 15px #00ffd5;
+}
+
+.info{
+margin-top:15px;
+font-size:12px;
 color:#777;
 }
 
-@media(max-width:600px){
-h1{
-font-size:28px;
+.status{
+margin-top:10px;
+font-size:12px;
+color:#00ff99;
 }
 
-.card{
-padding:25px;
-}
-}
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-
 <div class="card">
 
-<img src="profile.jpg">
+<img class="profile" src="profile.jpg">
 
 <h1>MAHAN OMIDI</h1>
+<div class="role">Cyber Security • Developer</div>
 
-<p class="typing">
-Cyber Security | Developer | Technology
-</p>
+<div class="typing" id="text"></div>
 
+<div class="btns">
 
-<div class="section">
+<a href="https://rubika.ir/Omidi__Xx">👤 روبیکا پروفایل</a>
 
-<h2>درباره من</h2>
+<a href="https://rubika.ir/mahanomidi6">📢 کانال روبیکا 1</a>
 
-<p>
-فعال در حوزه برنامه نویسی، طراحی وب و امنیت سایبری.
-ساخت پروژه های مدرن و یادگیری مداوم تکنولوژی.
-</p>
+<a href="https://rubika.ir/mahanomidi26">📢 کانال روبیکا 2</a>
 
-</div>
-
-
-<div class="section">
-
-<h2>مهارت ها</h2>
-
-<div class="skills">
-
-<div class="skill">
-💻 برنامه نویسی
-</div>
-
-<div class="skill">
-🌐 طراحی سایت
-</div>
-
-<div class="skill">
-🔐 امنیت سایبری
-</div>
-
-<div class="skill">
-⚙️ توسعه نرم افزار
-</div>
+<a href="tel:09379405557">📞 تماس مستقیم</a>
 
 </div>
 
-</div>
+<div class="status">🟢 Online • Active</div>
 
-
-<div class="section">
-
-<h2>ارتباط</h2>
-
-<a class="btn" href="#">
-تماس با من
-</a>
+<div class="info">Mobile Cyber Profile • Single Page</div>
 
 </div>
 
-
-</div>
-
-</div>
-
-
-<footer>
-© 2026 MAHAN CYBER
-</footer>
+<script>
+let txt = "Building secure digital systems...";
+let i=0;
+function type(){
+if(i < txt.length){
+document.getElementById("text").innerHTML += txt[i];
+i++;
+setTimeout(type,60);
+}
+}
+type();
+</script>
 
 </body>
 </html>
