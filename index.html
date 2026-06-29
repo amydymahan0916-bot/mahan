@@ -1,164 +1,222 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MAHAN Hack|ماهان هک</title>
+<title>هویت دیجیتال ماهان</title>
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:tahoma;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:system-ui;
 }
 
+/* بک‌گراند ماتریکس */
 body{
-height:100vh;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#05060a;
-color:#fff;
-position:relative;
+    min-height:100vh;
+    overflow-x:hidden;
+    color:white;
+    background:black;
 }
 
-/* glowing background */
-body::before{
-content:"";
-position:absolute;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#00e5ff55,#00ff9955,transparent 70%);
-filter:blur(80px);
-animation:move 6s infinite alternate;
+/* canvas ماتریکس */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-2;
 }
 
-@keyframes move{
-from{transform:translate(-150px,-100px);}
-to{transform:translate(150px,100px);}
+/* لایه نور نئونی */
+.glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:linear-gradient(45deg,#00ffcc,#0072ff);
+    filter:blur(150px);
+    opacity:0.12;
+    top:-150px;
+    right:-150px;
+    z-index:-1;
 }
 
-.card{
-width:92%;
-max-width:420px;
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(0,255,200,0.2);
-backdrop-filter:blur(20px);
-border-radius:25px;
-padding:25px;
-text-align:center;
-box-shadow:0 0 40px rgba(0,255,200,0.15);
+/* کانتینر */
+.wrap{
+    max-width:420px;
+    margin:auto;
+    padding:25px;
 }
 
-.profile{
-width:110px;
-height:110px;
-border-radius:50%;
-border:2px solid #00ffd5;
-object-fit:cover;
-box-shadow:0 0 20px #00ffd5;
+/* هدر */
+.hero{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px;
+    border-radius:18px;
+    background:rgba(0,255,200,0.05);
+    backdrop-filter: blur(10px);
+    border:1px solid rgba(0,255,200,0.15);
 }
 
-h1{
-font-size:22px;
-margin-top:10px;
-color:#00ffd5;
+/* عکس */
+.avatar{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    border:2px solid #00ffcc;
+    box-shadow:0 0 15px #00ffcc;
+    object-fit:cover;
 }
 
-.role{
-font-size:13px;
-color:#aaa;
-margin-top:5px;
-}
-
-.typing{
-margin-top:12px;
-font-size:13px;
-color:#00e5ff;
-min-height:18px;
-}
-
-.btns{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-top:20px;
-}
-
-a{
-text-decoration:none;
-padding:12px;
-border-radius:12px;
-background:rgba(0,255,200,0.08);
-border:1px solid rgba(0,255,200,0.25);
-color:#00ffd5;
-font-size:14px;
-transition:0.3s;
-}
-
-a:hover{
-background:#00ffd5;
-color:#000;
-box-shadow:0 0 15px #00ffd5;
-}
-
-.info{
-margin-top:15px;
-font-size:12px;
-color:#777;
+/* اسم */
+.name{
+    font-size:18px;
+    font-weight:800;
 }
 
 .status{
-margin-top:10px;
-font-size:12px;
-color:#00ff99;
+    font-size:12px;
+    color:#00ffcc;
 }
 
+/* کارت‌ها */
+.grid{
+    margin-top:18px;
+    display:grid;
+    gap:12px;
+}
+
+.card{
+    padding:14px;
+    border-radius:14px;
+    background:rgba(0,255,200,0.04);
+    border:1px solid rgba(0,255,200,0.12);
+    transition:0.3s;
+    backdrop-filter: blur(8px);
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    border-color:#00ffcc;
+    box-shadow:0 0 15px rgba(0,255,200,0.2);
+}
+
+/* دکمه‌ها */
+.buttons{
+    margin-top:18px;
+    display:grid;
+    gap:10px;
+}
+
+.btn{
+    padding:12px;
+    border-radius:14px;
+    text-decoration:none;
+    text-align:center;
+    font-weight:700;
+    color:black;
+    background:linear-gradient(45deg,#00ffcc,#0072ff);
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 20px rgba(0,255,200,0.4);
+}
+
+/* footer */
+.footer{
+    margin-top:20px;
+    font-size:10px;
+    color:#666;
+    text-align:center;
+}
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="glow"></div>
+<canvas id="matrix"></canvas>
 
-<img class="profile" src="profile.jpg">
+<div class="wrap">
 
-<h1>MAHAN OMIDI</h1>
-<div class="role">Cyber Security • Developer</div>
+    <!-- هدر -->
+    <div class="hero">
+        <img class="avatar" src="profile.jpg">
 
-<div class="typing" id="text"></div>
+        <div>
+            <div class="name">ماهان امیدی</div>
+            <div class="status">● اتصال به شبکه فعال</div>
+        </div>
+    </div>
 
-<div class="btns">
+    <!-- اطلاعات -->
+    <div class="grid">
 
-<a href="https://rubika.ir/Omidi__Xx">👤 روبیکا پروفایل</a>
+        <div class="card">💻 برنامه‌نویس وب و موبایل</div>
+        <div class="card">🔐 امنیت و هک اخلاقی</div>
+        <div class="card">🚀 توسعه سیستم‌های دیجیتال</div>
+        <div class="card">📍 وضعیت: آنلاین</div>
 
-<a href="https://rubika.ir/mahanomidi6">📢 کانال روبیکا 1</a>
+        <div class="card">📱 شماره: 09379405557</div>
+        <div class="card">📢 کانال روبیکا: MahanOmidi26</div>
+        <div class="card">👤 آی‌دی روبیکا: Omidi__xx</div>
 
-<a href="https://rubika.ir/mahanomidi26">📢 کانال روبیکا 2</a>
+    </div>
 
-<a href="tel:09379405557">📞 تماس مستقیم</a>
+    <!-- دکمه‌ها -->
+    <div class="buttons">
 
-</div>
+        <a class="btn" href="https://rubika.ir/MahanOmidi26">ورود به کانال</a>
+        <a class="btn" href="tel:09379405557">تماس مستقیم</a>
 
-<div class="status">🟢 Online • Active</div>
+    </div>
 
-<div class="info">Mobile Cyber Profile • Single Page</div>
+    <div class="footer">
+        SYSTEM ONLINE • DIGITAL ID ACTIVE
+    </div>
 
 </div>
 
 <script>
-let txt = "Building secure digital systems...";
-let i=0;
-function type(){
-if(i < txt.length){
-document.getElementById("text").innerHTML += txt[i];
-i++;
-setTimeout(type,60);
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letters = "01MAHANOMIDIHACKERDEV010101";
+letters = letters.split("");
+
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for(let x=0;x<columns;x++) drops[x]=1;
+
+function draw(){
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ffcc";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        let text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+            drops[i]=0;
+        }
+        drops[i]++;
+    }
 }
-}
-type();
+
+setInterval(draw,33);
 </script>
 
 </body>
