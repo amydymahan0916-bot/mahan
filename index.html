@@ -8,153 +8,110 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Tahoma, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:tahoma, sans-serif;
 }
 
 body{
-    background:#050505;
-    color:#fff;
-    overflow-x:hidden;
+background:#050505;
+color:white;
+min-height:100vh;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-    linear-gradient(rgba(0,255,150,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,255,150,.05) 1px,transparent 1px);
-    background-size:40px 40px;
-    z-index:-1;
+body:before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(#00ff9910 1px,transparent 1px),
+linear-gradient(90deg,#00ff9910 1px,transparent 1px);
+background-size:40px 40px;
+pointer-events:none;
 }
 
 .container{
-    width:90%;
-    max-width:1000px;
-    margin:auto;
-}
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+width:90%;
+max-width:900px;
+margin:auto;
 }
 
 .card{
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(0,255,150,.3);
-    border-radius:20px;
-    padding:40px;
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 30px rgba(0,255,150,.15);
+margin-top:60px;
+background:#0b0b0bcc;
+border:1px solid #00ff99;
+border-radius:25px;
+padding:35px;
+text-align:center;
+box-shadow:0 0 30px #00ff9930;
 }
 
-.profile{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    border:3px solid #00ff99;
-    object-fit:cover;
+img{
+width:150px;
+height:150px;
+border-radius:50%;
+border:3px solid #00ff99;
+object-fit:cover;
 }
 
 h1{
-    margin-top:20px;
-    color:#00ff99;
-    font-size:35px;
+margin:20px 0;
+color:#00ff99;
+font-size:35px;
 }
 
 .typing{
-    margin:15px 0;
-    color:#aaa;
+color:#aaa;
+font-size:18px;
 }
-    <section class="container">
-<div class="card">
 
-<h2 style="color:#00ff99">About Me</h2>
+.section{
+margin-top:35px;
+}
 
-<p class="typing">
-توسعه‌دهنده و فعال حوزه فناوری، برنامه‌نویسی و امنیت سایبری.
-ساخت تجربه‌های دیجیتال مدرن و امن.
-</p>
-
-<h2 style="color:#00ff99;margin-top:30px">Skills</h2>
-
-<div class="skills">
-
-<div class="box">💻 Web Development</div>
-<div class="box">🔐 Cyber Security</div>
-<div class="box">⚙️ Programming</div>
-<div class="box">🌐 Digital Solutions</div>
-
-</div>
-
-
-<h2 style="color:#00ff99;margin-top:30px">
-Contact
-</h2>
-
-<p>
-برای همکاری و ارتباط:
-</p>
-
-<a href="#" class="btn">
-تماس با من
-</a>
-
-
-</div>
-</section>
-
-
-<style>
+h2{
+color:#00ff99;
+margin-bottom:15px;
+}
 
 .skills{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:15px;
-margin-top:20px;
 }
 
-
-.box{
+.skill{
+background:#111;
+border:1px solid #00ff9950;
 padding:20px;
 border-radius:15px;
-background:rgba(0,255,150,.08);
-border:1px solid rgba(0,255,150,.3);
 transition:.3s;
 }
 
-
-.box:hover{
+.skill:hover{
 transform:translateY(-5px);
 box-shadow:0 0 20px #00ff99;
 }
 
-
 .btn{
 display:inline-block;
-margin-top:20px;
-padding:12px 30px;
-border-radius:30px;
+margin-top:25px;
+padding:12px 35px;
 background:#00ff99;
 color:#000;
+border-radius:30px;
 text-decoration:none;
 font-weight:bold;
 }
 
-
-.btn:hover{
-box-shadow:0 0 20px #00ff99;
+footer{
+margin:30px;
+text-align:center;
+color:#777;
 }
 
-
 @media(max-width:600px){
-
 h1{
 font-size:28px;
 }
@@ -162,12 +119,84 @@ font-size:28px;
 .card{
 padding:25px;
 }
-
 }
-
 </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<img src="profile.jpg">
+
+<h1>MAHAN OMIDI</h1>
+
+<p class="typing">
+Cyber Security | Developer | Technology
+</p>
+
+
+<div class="section">
+
+<h2>درباره من</h2>
+
+<p>
+فعال در حوزه برنامه نویسی، طراحی وب و امنیت سایبری.
+ساخت پروژه های مدرن و یادگیری مداوم تکنولوژی.
+</p>
+
+</div>
+
+
+<div class="section">
+
+<h2>مهارت ها</h2>
+
+<div class="skills">
+
+<div class="skill">
+💻 برنامه نویسی
+</div>
+
+<div class="skill">
+🌐 طراحی سایت
+</div>
+
+<div class="skill">
+🔐 امنیت سایبری
+</div>
+
+<div class="skill">
+⚙️ توسعه نرم افزار
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h2>ارتباط</h2>
+
+<a class="btn" href="#">
+تماس با من
+</a>
+
+</div>
 
 
 </div>
+
+</div>
+
+
+<footer>
+© 2026 MAHAN CYBER
+</footer>
+
 </body>
 </html>
